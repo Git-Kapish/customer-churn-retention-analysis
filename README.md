@@ -1,12 +1,33 @@
 # Customer Churn & Retention Analysis
 
+
 ## 1. Business Problem
 Subscription-based businesses lose significant recurring revenue to customer churn. This project
 identifies which customer segments are most likely to churn, quantifies the revenue at risk, and
 recommends targeted retention actions — presented the way a Business Analyst would pitch it to a
 Customer Success leadership team, not the way a data scientist would present a model.
 
-## 2. Dataset
+## 2. Key Findings
+
+Across an active base of **7,043 accounts**, overall churn stands at **26.54%** (1,869 lost
+customers), putting **$139,130.85/mo** ($1.67M ARR) at risk.
+
+| Driver | Churn Rate | Revenue at Risk | Association Strength (Cramér's V) |
+| :--- | :---: | :---: | :--- |
+| Month-to-Month Contracts | 42.71% | $113,382.45/mo | Very Strong (0.41) |
+| Electronic Check Payment | 45.29% | $79,271.65/mo | Strong (0.30) |
+| Fiber Optic Internet Service | 41.89% | $107,762.60/mo | Strong (0.32) |
+
+**Headline recommendation:** a 10% reduction in Month-to-Month churn (166 retained accounts)
+protects **$136,058.94 in Annualized Recurring Revenue**.
+
+Full writeup with root-cause analysis and three recommended retention actions:
+[`deliverables/executive_memo.md`](deliverables/executive_memo.md) ([PDF version](deliverables/executive_memo.pdf)).
+
+![Churn drivers overview](dashboard/screenshots/churn_drivers_overview.png)
+![Power BI dashboard](dashboard/screenshots/power_bi_dashboard_overview.png)
+
+## 3. Dataset
 **Source:** Telco Customer Churn dataset (Kaggle) —
 https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 
@@ -17,106 +38,79 @@ https://www.kaggle.com/datasets/blastchar/telco-customer-churn
   DeviceProtection, TechSupport, StreamingTV, StreamingMovies
 - Target: Churn (Yes/No)
 
-## 3. Repo Structure
+## 4. Repo Structure
 ```
 customer-churn-retention-analysis/
 ├── README.md
 ├── data/
-│   ├── raw/                  # original Kaggle CSV, untouched
-│   └── processed/            # cleaned CSV(s) used downstream
+│   ├── raw/                          # original Kaggle CSV, untouched
+│   │   └── WA_Fn-UseC_-Telco-Customer-Churn.csv
+│   └── processed/                    # cleaned data used downstream
+│       ├── churn_clean.csv
+│       ├── churn.db                  # SQLite DB loaded from churn_clean.csv
+│       └── segment_churn_summary.csv
 ├── sql/
-│   ├── 01_schema.sql
-│   ├── 02_segmentation.sql
-│   └── 03_churn_rate_by_segment.sql
+│   ├── 01_schema.sql                 # table + indexes
+│   ├── 02_segmentation.sql           # segment-level customer/revenue breakdowns
+│   └── 03_churn_rate_by_segment.sql  # churn rate & revenue-at-risk by segment
 ├── notebooks/
-│   ├── 01_data_cleaning.ipynb
-│   └── 02_eda_churn_drivers.ipynb
+│   ├── 01_data_cleaning.ipynb        # cleaning, feature engineering
+│   └── 02_eda_churn_drivers.ipynb    # chi-square + Cramér's V driver ranking, charts
 ├── excel/
-│   └── churn_revenue_whatif.xlsx
+│   └── churn_revenue_whatif.xlsx     # adjustable what-if revenue model
 ├── dashboard/
-│   ├── churn_dashboard.pbix
+│   ├── churn_dashboard.pbix          # Power BI dashboard
 │   └── screenshots/
 └── deliverables/
-    └── executive_memo.md      # final business recommendation write-up
+    ├── executive_memo.md             # final business recommendation write-up
+    └── executive_memo.pdf
 ```
 
-## 4. Build Plan (step-by-step)
+## 5. How It Was Built
 
 ### Phase 1 — Data Prep (Python)
-1. Load raw CSV into `notebooks/01_data_cleaning.ipynb`.
-2. Handle known data-quality issues: `TotalCharges` has blank strings for customers with
-   `tenure == 0`; coerce to numeric and either impute 0 or drop these rows (document the choice).
-3. Standardize categorical values (e.g. "No internet service" vs "No" — decide whether to
-   collapse these into a single "No" category and document the decision).
-4. Engineer features:
-   - `tenure_bucket` (e.g. 0-12, 13-24, 25-48, 49+ months)
-   - `num_services` (count of subscribed add-on services)
-   - `is_high_value` flag (e.g. top quartile of MonthlyCharges)
-5. Export cleaned dataset to `data/processed/churn_clean.csv`.
+Cleaned `TotalCharges` blanks (customers with `tenure == 0`), standardized "No internet service"
+categorical values, and engineered `tenure_bucket`, `num_services`, and `is_high_value` features.
+Output: `data/processed/churn_clean.csv`.
 
 ### Phase 2 — SQL Segmentation
-1. Load `data/processed/churn_clean.csv` into a local SQLite/Postgres database (agent should
-   pick whichever is simpler to set up locally, and document the choice in `sql/01_schema.sql`).
-2. Write queries in `sql/02_segmentation.sql` to segment customers by:
-   - Contract type (Month-to-month, One year, Two year)
-   - Tenure bucket
-   - Internet service type
-   - Payment method
-3. Write `sql/03_churn_rate_by_segment.sql` computing churn rate (%) and customer count for each
-   segment above, ordered by churn rate descending.
-4. Export the top-line results table as a CSV for use in Excel and Power BI.
+Loaded the cleaned CSV into a local SQLite database (`data/processed/churn.db`) and wrote
+segmentation and churn-rate queries by Contract, Tenure Bucket, Internet Service, and Payment
+Method.
 
 ### Phase 3 — EDA & Churn Drivers (Python)
-1. In `notebooks/02_eda_churn_drivers.ipynb`, visualize churn rate by each segment from Phase 2.
-2. Run a simple driver analysis (e.g. chi-square test for categorical variables against churn,
-   or a basic logistic regression only to rank feature importance — NOT for a black-box model
-   pitch, just to identify which factors matter most).
-3. Identify and write down the top 3 churn drivers in plain business language (e.g. "month-to-month
-   contract customers churn at 3x the rate of two-year contract customers").
+Ran a Chi-Square test of independence against `Churn` for every categorical feature, ranked by
+Cramér's V, and translated the top 3 drivers into plain business language.
 
 ### Phase 4 — Excel What-If Model
-1. Build a pivot table in `excel/churn_revenue_whatif.xlsx` summarizing churn rate and customer
-   count by segment (from Phase 2 SQL output).
-2. Add a what-if calculation: "If churn in [highest-risk segment] drops by X%, how much monthly
-   recurring revenue is retained?" Make X adjustable via a simple input cell.
-3. Show the result as an annualized revenue-saved figure — this is the single number the
-   executive memo should lead with.
+Built `excel/churn_revenue_whatif.xlsx` with a live, editable input cell (`WhatIf_Model!B8`) for
+the target churn-reduction %, flowing through to retained-account count and Annualized Revenue
+Saved, plus a sensitivity matrix across 5%–25% reduction scenarios.
 
 ### Phase 5 — Power BI Dashboard
-1. Connect Power BI to `data/processed/churn_clean.csv` (or the SQL segment export).
-2. Build these visuals:
-   - Churn rate by segment (bar chart)
-   - Revenue at risk by segment (bar chart, MonthlyCharges × churned customer count)
-   - Churn trend by tenure bucket (line chart)
-   - KPI cards: overall churn rate, total customers, total monthly revenue at risk
-3. Export dashboard screenshots to `dashboard/screenshots/`.
+Connected Power BI to the cleaned dataset and built churn-rate-by-segment, revenue-at-risk-by-segment,
+churn-by-tenure-bucket, and overall KPI card visuals. Screenshots in `dashboard/screenshots/`.
 
 ### Phase 6 — Executive Memo
-1. Write `deliverables/executive_memo.md` (or convert to PDF/Word) as a one-pager containing:
-   - Top 3 churn drivers (plain language, no jargon)
-   - Revenue at risk (the number from the Excel what-if model)
-   - 3 recommended retention actions tied directly to the drivers
-2. Audience: VP of Customer Success. Tone: decisive, quantified, no ML jargon.
+Wrote `deliverables/executive_memo.md`, leading with the revenue number and closing with three
+retention actions tied directly to the churn drivers. Audience: VP of Customer Success.
 
-## 5. Acceptance Criteria / Definition of Done
-- [ ] `data/processed/churn_clean.csv` exists and is documented (cleaning decisions noted in the notebook)
-- [ ] All 3 SQL queries run without error and produce a segment-level churn rate table
-- [ ] EDA notebook clearly states the top 3 churn drivers with supporting numbers
-- [ ] Excel workbook has a working, adjustable what-if calculation
-- [ ] Power BI dashboard has at least the 4 visuals listed above
-- [ ] Executive memo is under 1 page and leads with the revenue number
+## 6. Reproducing the Analysis
+```bash
+# 1. Data cleaning
+jupyter nbconvert --to notebook --execute notebooks/01_data_cleaning.ipynb
 
-## 6. Tools
-Python (pandas, matplotlib/seaborn, scipy or statsmodels for the driver test), SQL (SQLite or
-Postgres), Excel, Power BI
+# 2. Load cleaned data into SQLite and run segmentation queries
+sqlite3 data/processed/churn.db < sql/01_schema.sql
+sqlite3 data/processed/churn.db < sql/02_segmentation.sql
+sqlite3 data/processed/churn.db < sql/03_churn_rate_by_segment.sql
 
-## 7. Status
-🚧 In progress — see Phase checklist above for current state.
+# 3. Driver analysis / EDA
+jupyter nbconvert --to notebook --execute notebooks/02_eda_churn_drivers.ipynb
+```
+Open `excel/churn_revenue_whatif.xlsx` and edit cell `WhatIf_Model!B8` to test other churn-reduction
+targets. Open `dashboard/churn_dashboard.pbix` in Power BI Desktop to explore the dashboard.
 
-## 8. Notes for AI Coding Agents
-- Prioritize Phases 1-3 first (Python + SQL) — these unblock everything else.
-- Do not build a complex ML model here; this is a Business Analyst project, so keep any
-  statistical modeling simple and explainable (chi-square, basic logistic regression for
-  ranking only — not for deployment).
-- Every deliverable should be traceable back to a plain-English business recommendation, not
-  just a chart or a metric.
+## 7. Tools
+Python (pandas, matplotlib/seaborn, scipy for the chi-square driver test), SQL (SQLite), Excel,
+Power BI
