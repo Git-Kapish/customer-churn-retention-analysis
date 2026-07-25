@@ -1,0 +1,25 @@
+# Helper & Automation Scripts
+scripts/
+dashboard/churn_dashboard.Report/
+dashboard/churn_dashboard.Dataset/
+
+
+# Python Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# OS Generated Files
+.DS_Store
+Thumbs.db

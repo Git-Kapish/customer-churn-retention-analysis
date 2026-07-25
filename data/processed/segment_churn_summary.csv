@@ -1,0 +1,103 @@
+Contract,tenure_bucket,InternetService,PaymentMethod,total_customers,churned_customers,churn_rate_pct,total_monthly_revenue,monthly_revenue_at_risk,annualized_revenue_at_risk
+Month-to-month,0-12 Months,Fiber optic,Bank transfer (automatic),87,71,81.61,7227.0,5956.15,71473.8
+Month-to-month,0-12 Months,Fiber optic,Electronic check,631,449,71.16,51934.95,37166.0,445992.0
+Month-to-month,0-12 Months,Fiber optic,Mailed check,123,77,62.6,9797.0,6152.9,73834.8
+Month-to-month,0-12 Months,Fiber optic,Credit card (automatic),75,46,61.33,6224.2,3903.25,46839.0
+Month-to-month,13-24 Months,Fiber optic,Electronic check,255,150,58.82,22554.8,13353.65,160243.8
+Month-to-month,0-12 Months,DSL,Electronic check,282,142,50.35,13305.7,6318.9,75826.8
+Month-to-month,25-48 Months,Fiber optic,Electronic check,286,140,48.95,26466.05,12946.75,155361.0
+Month-to-month,13-24 Months,Fiber optic,Credit card (automatic),62,28,45.16,5369.4,2459.05,29508.6
+Month-to-month,25-48 Months,Fiber optic,Bank transfer (automatic),102,42,41.18,9345.15,3889.0,46668.0
+Month-to-month,0-12 Months,DSL,Mailed check,255,102,40.0,11923.15,4704.7,56456.4
+One year,25-48 Months,Fiber optic,Mailed check,10,4,40.0,964.5,383.7,4604.4
+Month-to-month,0-12 Months,DSL,Credit card (automatic),74,28,37.84,3782.25,1372.45,16469.4
+Month-to-month,13-24 Months,Fiber optic,Mailed check,37,14,37.84,3213.25,1257.35,15088.2
+Month-to-month,49+ Months,Fiber optic,Electronic check,135,50,37.04,12992.3,4815.1,57781.2
+Month-to-month,25-48 Months,Fiber optic,Mailed check,31,11,35.48,2706.4,997.0,11964.0
+Month-to-month,13-24 Months,DSL,Electronic check,85,30,35.29,4359.5,1449.35,17392.2
+Month-to-month,13-24 Months,Fiber optic,Bank transfer (automatic),71,23,32.39,6067.65,1976.85,23722.2
+Month-to-month,25-48 Months,Fiber optic,Credit card (automatic),102,33,32.35,9017.85,2929.3,35151.6
+Month-to-month,13-24 Months,No,Bank transfer (automatic),10,3,30.0,208.2,59.4,712.8
+One year,25-48 Months,Fiber optic,Electronic check,59,17,28.81,5638.75,1667.95,20015.4
+Month-to-month,49+ Months,Fiber optic,Credit card (automatic),54,15,27.78,5162.4,1439.55,17274.6
+One year,0-12 Months,DSL,Electronic check,11,3,27.27,699.9,151.15,1813.8
+Month-to-month,0-12 Months,No,Electronic check,41,11,26.83,830.9,218.25,2619.0
+Month-to-month,0-12 Months,DSL,Bank transfer (automatic),79,21,26.58,4028.6,955.85,11470.2
+One year,49+ Months,Fiber optic,Electronic check,129,32,24.81,13037.35,3275.1,39301.2
+Month-to-month,0-12 Months,No,Mailed check,263,63,23.95,5329.3,1262.3,15147.6
+One year,13-24 Months,DSL,Credit card (automatic),17,4,23.53,964.8,230.35,2764.2
+Month-to-month,25-48 Months,DSL,Credit card (automatic),50,11,22.0,2642.35,531.15,6373.8
+Month-to-month,0-12 Months,No,Bank transfer (automatic),42,9,21.43,850.2,186.9,2242.8
+Month-to-month,13-24 Months,DSL,Credit card (automatic),44,9,20.45,2304.35,456.45,5477.4
+Month-to-month,49+ Months,DSL,Electronic check,30,6,20.0,1589.7,283.85,3406.2
+Two year,25-48 Months,Fiber optic,Electronic check,10,2,20.0,1017.95,185.05,2220.6
+Month-to-month,49+ Months,Fiber optic,Bank transfer (automatic),67,13,19.4,6219.2,1240.1,14881.2
+Month-to-month,25-48 Months,DSL,Electronic check,77,14,18.18,4087.55,724.35,8692.2
+Month-to-month,13-24 Months,DSL,Bank transfer (automatic),39,7,17.95,2133.45,382.45,4589.4
+One year,25-48 Months,Fiber optic,Credit card (automatic),35,6,17.14,3445.05,619.35,7432.2
+One year,49+ Months,Fiber optic,Bank transfer (automatic),101,17,16.83,10112.15,1777.65,21331.8
+One year,49+ Months,Fiber optic,Credit card (automatic),106,17,16.04,10631.45,1773.0,21276.0
+Month-to-month,25-48 Months,DSL,Bank transfer (automatic),57,9,15.79,3183.25,390.0,4680.0
+One year,13-24 Months,DSL,Bank transfer (automatic),19,3,15.79,1187.25,180.75,2169.0
+Month-to-month,13-24 Months,DSL,Mailed check,64,9,14.06,3424.6,477.15,5725.8
+One year,25-48 Months,DSL,Mailed check,65,9,13.85,3871.85,541.95,6503.4
+Month-to-month,13-24 Months,No,Electronic check,15,2,13.33,316.95,39.4,472.8
+Month-to-month,0-12 Months,No,Credit card (automatic),42,5,11.9,853.25,103.8,1245.6
+Month-to-month,49+ Months,DSL,Credit card (automatic),17,2,11.76,921.9,114.75,1377.0
+One year,49+ Months,DSL,Electronic check,44,5,11.36,2912.8,309.4,3712.8
+One year,0-12 Months,DSL,Mailed check,18,2,11.11,923.15,144.05,1728.6
+One year,13-24 Months,DSL,Mailed check,28,3,10.71,1738.25,208.65,2503.8
+One year,25-48 Months,DSL,Credit card (automatic),77,8,10.39,4747.1,567.5,6810.0
+One year,0-12 Months,No,Credit card (automatic),10,1,10.0,207.6,19.3,231.6
+Two year,49+ Months,Fiber optic,Bank transfer (automatic),151,15,9.93,15831.2,1580.15,18961.8
+Month-to-month,49+ Months,DSL,Bank transfer (automatic),22,2,9.09,1155.75,95.6,1147.2
+One year,49+ Months,No,Electronic check,11,1,9.09,241.2,24.9,298.8
+Two year,49+ Months,Fiber optic,Electronic check,81,7,8.64,8548.35,730.2,8762.4
+One year,25-48 Months,No,Electronic check,12,1,8.33,264.6,20.4,244.8
+Two year,49+ Months,DSL,Electronic check,49,4,8.16,3513.7,231.1,2773.2
+One year,25-48 Months,Fiber optic,Bank transfer (automatic),50,4,8.0,4742.45,368.1,4417.2
+Month-to-month,25-48 Months,No,Bank transfer (automatic),13,1,7.69,272.85,19.65,235.8
+Month-to-month,13-24 Months,No,Credit card (automatic),15,1,6.67,313.6,25.4,304.8
+One year,13-24 Months,DSL,Electronic check,15,1,6.67,904.8,55.95,671.4
+One year,49+ Months,DSL,Bank transfer (automatic),69,4,5.8,4352.55,280.15,3361.8
+One year,49+ Months,DSL,Credit card (automatic),69,4,5.8,4448.7,281.5,3378.0
+One year,25-48 Months,DSL,Bank transfer (automatic),53,3,5.66,3361.8,211.75,2541.0
+One year,49+ Months,Fiber optic,Mailed check,19,1,5.26,1892.55,100.45,1205.4
+Month-to-month,13-24 Months,No,Mailed check,40,2,5.0,815.4,43.8,525.6
+One year,13-24 Months,No,Bank transfer (automatic),20,1,5.0,417.55,20.15,241.8
+Month-to-month,25-48 Months,No,Mailed check,21,1,4.76,434.35,19.55,234.6
+Month-to-month,25-48 Months,DSL,Mailed check,43,2,4.65,2318.05,110.25,1323.0
+One year,25-48 Months,DSL,Electronic check,46,2,4.35,2733.05,115.35,1384.2
+One year,49+ Months,No,Bank transfer (automatic),24,1,4.17,519.0,20.8,249.6
+Two year,49+ Months,Fiber optic,Credit card (automatic),145,6,4.14,15114.85,655.2,7862.4
+One year,0-12 Months,No,Mailed check,49,2,4.08,993.8,39.6,475.2
+Two year,25-48 Months,DSL,Credit card (automatic),31,1,3.23,2044.45,54.35,652.2
+One year,25-48 Months,No,Bank transfer (automatic),37,1,2.7,784.75,25.3,303.6
+Two year,25-48 Months,No,Credit card (automatic),40,1,2.5,858.15,24.75,297.0
+Two year,49+ Months,DSL,Credit card (automatic),197,4,2.03,14535.0,307.35,3688.2
+Two year,49+ Months,DSL,Bank transfer (automatic),199,3,1.51,14255.8,212.9,2554.8
+Two year,25-48 Months,No,Mailed check,76,1,1.32,1583.95,24.5,294.0
+Two year,49+ Months,No,Mailed check,100,1,1.0,2211.35,19.35,232.2
+Two year,49+ Months,No,Credit card (automatic),127,1,0.79,2815.25,25.15,301.8
+Two year,49+ Months,No,Bank transfer (automatic),129,1,0.78,2875.1,19.75,237.0
+Month-to-month,25-48 Months,No,Electronic check,13,0,0.0,292.15,0.0,0.0
+Month-to-month,49+ Months,Fiber optic,Mailed check,10,0,0.0,883.5,0.0,0.0
+One year,13-24 Months,No,Credit card (automatic),17,0,0.0,348.95,0.0,0.0
+One year,13-24 Months,No,Mailed check,54,0,0.0,1081.95,0.0,0.0
+One year,25-48 Months,No,Credit card (automatic),28,0,0.0,584.25,0.0,0.0
+One year,25-48 Months,No,Mailed check,46,0,0.0,955.15,0.0,0.0
+One year,49+ Months,DSL,Mailed check,26,0,0.0,1529.95,0.0,0.0
+One year,49+ Months,No,Credit card (automatic),21,0,0.0,447.05,0.0,0.0
+One year,49+ Months,No,Mailed check,15,0,0.0,318.55,0.0,0.0
+Two year,0-12 Months,DSL,Mailed check,12,0,0.0,697.05,0.0,0.0
+Two year,0-12 Months,No,Credit card (automatic),10,0,0.0,215.8,0.0,0.0
+Two year,0-12 Months,No,Mailed check,32,0,0.0,666.15,0.0,0.0
+Two year,13-24 Months,DSL,Mailed check,14,0,0.0,666.4,0.0,0.0
+Two year,13-24 Months,No,Credit card (automatic),13,0,0.0,286.8,0.0,0.0
+Two year,13-24 Months,No,Mailed check,44,0,0.0,926.0,0.0,0.0
+Two year,25-48 Months,DSL,Bank transfer (automatic),18,0,0.0,1100.45,0.0,0.0
+Two year,25-48 Months,DSL,Mailed check,22,0,0.0,1467.0,0.0,0.0
+Two year,25-48 Months,Fiber optic,Bank transfer (automatic),11,0,0.0,1092.0,0.0,0.0
+Two year,25-48 Months,No,Bank transfer (automatic),35,0,0.0,745.15,0.0,0.0
+Two year,49+ Months,DSL,Mailed check,61,0,0.0,4316.5,0.0,0.0
+Two year,49+ Months,Fiber optic,Mailed check,16,0,0.0,1702.75,0.0,0.0
